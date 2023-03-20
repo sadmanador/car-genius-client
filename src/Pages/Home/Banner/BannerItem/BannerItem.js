@@ -4,8 +4,8 @@ const BannerItem = ({slide}) => {
     const {id, image, prev, next} = slide;
   return (
     <div id={`slide${id}`} className="carousel-item relative w-full text-white">
-      <div className="carousel-img">
-        <img src={image} className="w-full" />
+      <div className="carousel-img rounded-xl">
+        <img src={image} className="w-full rounded-xl" />
       </div>
       <div className="absolute flex justify-between transform -translate-y-1/2 left-15 right-5 bottom-5">
         <a href={`#slide${prev}`} className="btn btn-circle bg-orange-500">
