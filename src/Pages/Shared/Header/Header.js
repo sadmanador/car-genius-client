@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Header = () => {
-    const menuItem = <>
-        <Link to='/'>Home</Link>
+  const {user, logout} = useContext(AuthContext);
+
+  //logout
+  const signOurUser = () => {
+    logout().then(() => {
+      toast.success("logged out")
+    }
+    ).catch((err) => {
+      console.error(err)
+    }
+    )
+  }
+  
+
+
+  const menuItem = (
+    <>
+      <Link to="/">Home</Link>
     </>
+  );
+  const login = (
+    <>
+      <Link to="/login">Login</Link>
+    </>
+  );
 
   return (
     <div className="navbar bg-base-100 h-20 mb-12">
@@ -60,15 +84,27 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        <img src="assets/logo.svg" alt="" className="h-24 w-24"/>
+        <img src="assets/logo.svg" alt="" className="h-24 w-24" />
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 text-xl font-bold">
-         <li>{menuItem}</li>
+          <li>{menuItem}</li>
+          <li>
+            {
+              !user?.email ? login : <a href="#">{user.email}</a>
+            }
+          </li>
+          <li>
+            {
+              user?.email && <button onClick={signOurUser}>Log Out</button>
+            }
+          </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <a href="#" className="btn btn btn-outline btn-error">Appointment</a>
+        <a href="#" className="btn btn btn-outline btn-error">
+          Appointment
+        </a>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 const serviceCard = ({ service }) => {
   const { _id, img, title, price } = service;
 
-  console.log(service);
+  
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
