@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
     const menuItem = <>
-        <li>Home</li>
+        <Link to='/'>Home</Link>
     </>
 
   return (
@@ -63,10 +63,8 @@ const Header = () => {
         <img src="assets/logo.svg" alt="" className="h-24 w-24"/>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <Link to="/" className="text-xl font-bold">{menuItem}</Link>
-          </li>
+        <ul className="menu menu-horizontal px-1 text-xl font-bold">
+         <li>{menuItem}</li>
         </ul>
       </div>
       <div className="navbar-end">

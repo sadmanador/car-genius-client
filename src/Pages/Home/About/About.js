@@ -2,9 +2,9 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero">
       <div className="hero-content flex-col lg:flex-row">
-        <div className="relative w-1/2">
+        <div className="relative">
           <img
             src="assets/images/about_us/person.jpg"
             className="w-4/5 h-full rounded-lg shadow-2xl"
