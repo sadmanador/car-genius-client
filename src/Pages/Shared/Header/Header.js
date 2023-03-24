@@ -4,20 +4,18 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Header = () => {
-  const {user, logout} = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   //logout
   const signOurUser = () => {
-    logout().then(() => {
-      toast.success("logged out")
-    }
-    ).catch((err) => {
-      console.error(err)
-    }
-    )
-  }
-  
-
+    logout()
+      .then(() => {
+        toast.success("logged out");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   const menuItem = (
     <>
@@ -27,6 +25,11 @@ const Header = () => {
   const login = (
     <>
       <Link to="/login">Login</Link>
+    </>
+  );
+  const orders = (
+    <>
+      <Link to="/orders">Orders</Link>
     </>
   );
 
@@ -89,15 +92,11 @@ const Header = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 text-xl font-bold">
           <li>{menuItem}</li>
+
+          <li>{!user?.email ? login : <a href="#">{user.email}</a>}</li>
+          <li>{orders}</li>
           <li>
-            {
-              !user?.email ? login : <a href="#">{user.email}</a>
-            }
-          </li>
-          <li>
-            {
-              user?.email && <button onClick={signOurUser}>Log Out</button>
-            }
+            {user?.email && <button onClick={signOurUser}>Log Out</button>}
           </li>
         </ul>
       </div>
