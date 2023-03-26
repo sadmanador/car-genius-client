@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { AiFillCloseCircle, AiFillEdit } from "react-icons/ai";
+import { AiFillCloseCircle, } from "react-icons/ai";
 
-const OrderItems = ({ order, handleDelete }) => {
-  const { _id, service_id, phone, name, email, message } = order;
+const OrderItems = ({ order, handleDelete, handleStatusUpdate }) => {
+  const { _id, service_id, phone, name, email, status } = order;
   const [orderService, setOrderService] = useState({});
 
   useEffect(() => {
@@ -41,8 +41,12 @@ const OrderItems = ({ order, handleDelete }) => {
       <td>{email}</td>
       <td>{phone}</td>
       <th>
-        <button className="btn btn-ghost btn-xs text-2xl">
-          <AiFillEdit className="text-blue-600" />
+        <button 
+        className={status ? "btn btn-success btn-xs" : "btn btn-error btn-xs"}
+        onClick={()=> handleStatusUpdate(_id)} >
+          {
+            status ? status : "Pending"
+          }
         </button>
       </th>
       <th>

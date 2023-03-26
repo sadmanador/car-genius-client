@@ -33,6 +33,28 @@ const Orders = () => {
     }
   };
 
+  const handleStatusUpdate = (id) => {
+    fetch(`http://localhost:5000/orders/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ status: "Approved" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        window.location.reload();
+        if (data.modifiedCount > 0) {
+          toast.success("Approved successfully");
+          const remaining = orders.filter((odr) => odr._id !== id);
+          const approving = orders.find((odr) => odr === id);
+          approving.status = "Approved";
+          const newOrders = [approving, ...remaining];
+          setOrders(newOrders);
+        }
+      });
+  };
+
   return (
     <div className="text-center bg-base-200 p-16 rounded-lg">
       <h1 className="text-4xl font-semibold">Orders</h1>
@@ -58,6 +80,7 @@ const Orders = () => {
                   order={order}
                   key={order._id}
                   handleDelete={handleDelete}
+                  handleStatusUpdate={handleStatusUpdate}
                 ></OrderItems>
               ))}
             </tbody>
