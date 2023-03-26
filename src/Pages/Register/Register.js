@@ -4,7 +4,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 
 const Register = () => {
   const [user, setUser] = useState([]);
-  const { registerUser } = useContext(AuthContext);
+  const { registerUser, setLoading } = useContext(AuthContext);
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -19,6 +19,7 @@ const Register = () => {
       setUser(user)
       console.log(user)
       form.reset();
+      setLoading(false)
     })
     .catch(err => console.error(err))
 

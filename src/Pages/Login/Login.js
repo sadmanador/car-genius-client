@@ -4,7 +4,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
   const [user, setUser] = useState(null);
-  const { login } = useContext(AuthContext);
+  const { login, setLoading } = useContext(AuthContext);
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -19,6 +19,7 @@ const Login = () => {
         setUser(user);
         console.log(user);
         form.reset();
+        setLoading(false)
       })
       .catch((err) => console.error(err));
   };
