@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Header = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, setLoading } = useContext(AuthContext);
 
   //logout
   const signOurUser = () => {
     logout()
       .then(() => {
         toast.success("logged out");
+        setLoading(false);
       })
       .catch((err) => {
         console.error(err);

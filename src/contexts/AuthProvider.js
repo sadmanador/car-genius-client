@@ -23,22 +23,21 @@ const AuthProvider = ({ children }) => {
 
   //sing in user
   const login = (email, password) => {
-    setLoading(true)
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
-  }
-  
+  };
+
   //logout
   const logout = () => {
-    setLoading(true)
-    return signOut(auth)
-  }
-  
+    setLoading(true);
+    return signOut(auth);
+  };
 
   //tracking user
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false)
+      setLoading(false);
     });
 
     return () => {
